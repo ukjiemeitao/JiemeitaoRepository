@@ -1,0 +1,10 @@
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\bin\Debug\TaoBaoAPIClient.exe.config
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\bin\Debug\TaoBaoAPIClient.exe
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\bin\Debug\TaoBaoAPIClient.pdb
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\obj\Debug\TaoBaoAPIClient.exe
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\obj\Debug\TaoBaoAPIClient.pdb
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\bin\Debug\TopSdk.dll
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\bin\Debug\HtmlAgilityPack.dll
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\bin\Debug\HtmlAgilityPack.pdb
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\bin\Debug\HtmlAgilityPack.xml
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\TaoBaoAPIClient\obj\Debug\TaoBaoAPIClient.csprojResolveAssemblyReference.cache

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="UKjiemeitao.WPFUI.ucSystemSet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" Name="btn_itemcat" Content="初始化淘宝分类数据" Click="btn_itemcat_Click_1" Width="150" Height="30" ></Button>
+        <Button Grid.Row="0" Grid.Column="1" Name="btn_itemprop" Content="初始化淘宝属性数据" Click="btn_itemprop_Click_1"  Width="150" Height="30"></Button>
+        <Button Grid.Row="0" Grid.Column="2" Name="btn_propvalue" Content="初始化淘宝属性值数据" Click="btn_propvalue_Click_1"  Width="150" Height="30"></Button>
+        <Button Grid.Row="1" Grid.Column="0" Name="btn_downloadssretailers" Content="初始化ShopStyle供应商" Click="btn_downloadssretailers_Click" Width="150" Height="30"></Button>
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ProductUploader.master.cs" Inherits="ProductUploader.ProductUploader" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Product Uploader</title>
+     <style type="text/css" media="all">@import "htdocs/css/master.css";</style>
+     <asp:ContentPlaceHolder id="head" runat="server">
+     </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" >
+    <div id="page-container">
+         <div id="main-nav">          
+            <a href="DownloadSetting.aspx">步骤1 下载配置页面</a> -
+             <a href="PropertiesSetting.aspx">步骤2 属性配置页面</a> -
+            <a href="UploadSetting.aspx">步骤3 上传配置页面</a>
+            
+                                       
+        </div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">        
+        </asp:ContentPlaceHolder>
+        <div id="footer">
+            <div id="altnav">
+                <a href="DownloadSetting.aspx">步骤1 下载配置页面</a> -
+             <a href="PropertiesSetting.aspx">步骤2 属性配置页面</a> -
+            <a href="UploadSetting.aspx">步骤3 上传配置页面</a>           
+            </div>
+            Copyright @ ukjiemeitao
+        </div>
+    </div>
+    </form>
+</body>
+</html>

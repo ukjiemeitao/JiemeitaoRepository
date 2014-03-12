@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Catalog" Class="TaoBaoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=STMA-MAC1\SQLEXPRESS;Initial Catalog=Catalog;Integrated Security=True" SettingsObjectName="TaoBaoAPIClient.Properties.Settings" SettingsPropertyName="CatalogConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TB_ItemCat" Member="TB_ItemCats">
+    <Type Name="TB_ItemCat">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="IsParent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedType" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="ParentCid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ItemProp" Member="TB_ItemProps">
+    <Type Name="TB_ItemProp">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Pid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ParentPid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ParentVid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ChildTemplate" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="IsAllowAlias" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsColorProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsEnumProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsInputProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsItemProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsKeyProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsSaleProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedType" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Multi" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Must" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Required" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_Product" Member="TB_Products">
+    <Type Name="TB_Product">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="StuffStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PropertyAlias" Type="System.String" DbType="NVarChar(511)" CanBeNull="true" />
+      <Column Name="Props" Type="System.String" DbType="NVarChar(549)" CanBeNull="true" />
+      <Column Name="PicPath" Type="System.String" DbType="NChar(1000)" CanBeNull="true" />
+      <Column Name="Num" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LocationState" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LocationCity" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ApproveStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FreightPayer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ValidThru" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HasInvoice" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HasWarranty" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HasShowcase" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SellerCids" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="InputPids" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="InputStr" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="HasDiscount" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PostFee" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="ExpressFee" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="EmsFee" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="ListTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Increment" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ImgFilePath" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PostageId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AuctionPoint" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SkuProperties" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="SkuQuantities" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="SkuPrices" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="SkuOuterIds" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Lang" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OuterId" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="IsTaobao" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsEx" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Is3D" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SellPromise" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AfterSaleId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CodPostageId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsLightningConsignment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsXinpin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SubStock" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ItemSize" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="ItemWeight" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="ChangeProp" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="DescModules" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="GlobalStockType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GlobalStockCountry" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NumIid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsReplaceSku" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EmptyFields" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SSProductID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsUploaded" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_PropValue" Member="TB_PropValues">
+    <Type Name="TB_PropValue">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsParent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedType" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NameAlias" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Pid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PropName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Vid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

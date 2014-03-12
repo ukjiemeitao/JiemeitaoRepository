@@ -1,0 +1,4 @@
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\dll\UKjiemeitao.Infrastructure.dll
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\dll\UKjiemeitao.Infrastructure.pdb
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\UKjiemeitao.Infrastructure\obj\Debug\UKjiemeitao.Infrastructure.dll
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\UKjiemeitao.Infrastructure\obj\Debug\UKjiemeitao.Infrastructure.pdb

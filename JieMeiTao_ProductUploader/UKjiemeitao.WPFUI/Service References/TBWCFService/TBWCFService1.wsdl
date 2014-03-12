@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://UKjiemeitao.taobao.com" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://UKjiemeitao.taobao.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://UKjiemeitao.taobao.com/Imports">
+      <xsd:import schemaLocation="http://localhost:8058/TBWCFService.svc?xsd=xsd0" namespace="http://UKjiemeitao.taobao.com" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITBProductUploadService_InitializationItemCat_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitializationItemCat" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_InitializationItemCat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitializationItemCatResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_InitializationItemProp_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitializationItemProp" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_InitializationItemProp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitializationItemPropResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_InitializationPropValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitializationPropValue" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_InitializationPropValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitializationPropValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_ConvertSSProductToTaoBao_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertSSProductToTaoBao" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_ConvertSSProductToTaoBao_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertSSProductToTaoBaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_UploadProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadProduct" />
+  </wsdl:message>
+  <wsdl:message name="ITBProductUploadService_UploadProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadProductResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITBProductUploadService">
+    <wsdl:operation name="InitializationItemCat">
+      <wsdl:input wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/InitializationItemCat" message="tns:ITBProductUploadService_InitializationItemCat_InputMessage" />
+      <wsdl:output wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/InitializationItemCatResponse" message="tns:ITBProductUploadService_InitializationItemCat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitializationItemProp">
+      <wsdl:input wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/InitializationItemProp" message="tns:ITBProductUploadService_InitializationItemProp_InputMessage" />
+      <wsdl:output wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/InitializationItemPropResponse" message="tns:ITBProductUploadService_InitializationItemProp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitializationPropValue">
+      <wsdl:input wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/InitializationPropValue" message="tns:ITBProductUploadService_InitializationPropValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/InitializationPropValueResponse" message="tns:ITBProductUploadService_InitializationPropValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertSSProductToTaoBao">
+      <wsdl:input wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/ConvertSSProductToTaoBao" message="tns:ITBProductUploadService_ConvertSSProductToTaoBao_InputMessage" />
+      <wsdl:output wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/ConvertSSProductToTaoBaoResponse" message="tns:ITBProductUploadService_ConvertSSProductToTaoBao_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadProduct">
+      <wsdl:input wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/UploadProduct" message="tns:ITBProductUploadService_UploadProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://UKjiemeitao.taobao.com/ITBProductUploadService/UploadProductResponse" message="tns:ITBProductUploadService_UploadProduct_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

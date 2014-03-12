@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://UKjiemeitao.taobao.com/SSProductDataObject.xsd" elementFormDefault="qualified" targetNamespace="http://UKjiemeitao.taobao.com/SSProductDataObject.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8058/SSWCFService.svc?xsd=xsd4" namespace="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd" />
+  <xs:import schemaLocation="http://localhost:8058/SSWCFService.svc?xsd=xsd6" namespace="http://UKjiemeitao.taobao.com/SSRetailerDataObject.xsd" />
+  <xs:import schemaLocation="http://localhost:8058/SSWCFService.svc?xsd=xsd2" namespace="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" />
+  <xs:complexType name="SSProductDataObject">
+    <xs:sequence>
+      <xs:element name="id" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="product_id" type="xs:long" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="price_label" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sale_price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="sale_price_label" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="in_stock" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="retailer_id" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="locale" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="brand_id" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="click_url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="page_url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="image_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="chinese_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="chinese_description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsTranslate" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q1="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd" minOccurs="0" name="Brand" nillable="true" type="q1:SSBrandDataObject" />
+      <xs:element xmlns:q2="http://UKjiemeitao.taobao.com/SSRetailerDataObject.xsd" minOccurs="0" name="Retailer" nillable="true" type="q2:SSRetailerDataObject" />
+      <xs:element xmlns:q3="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" minOccurs="0" name="CategoryCollection" nillable="true" type="q3:SSCategoryDataObjectList" />
+      <xs:element xmlns:q4="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" minOccurs="0" name="SizeCollection" nillable="true" type="q4:SSSizeDataObjectList" />
+      <xs:element xmlns:q5="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" minOccurs="0" name="ColorCollection" nillable="true" type="q5:SSProductColorImageMappingtDataObjectList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SSProductDataObject" nillable="true" type="tns:SSProductDataObject" />
+</xs:schema>

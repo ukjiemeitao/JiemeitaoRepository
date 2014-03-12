@@ -1,0 +1,50 @@
+ï»¿<?xml version="1.0" encoding="utf-8" ?>
+<item_get_response>
+<item>
+<approve_status>instock</approve_status>
+<auction_point>0</auction_point>
+<cid>50008905</cid>
+<desc>&lt;p&gt;&nbsp;Æ¤ÖÊÓðÈÞ·þ&lt;/p&gt;</desc>
+<detail_url>http://item.taobao.com/item.htm?id=37059624838&spm=2014.21682361.0.0</detail_url>
+<ems_fee>0.00</ems_fee>
+<express_fee>0.00</express_fee>
+<freight_payer>buyer</freight_payer>
+<has_discount>false</has_discount>
+<has_invoice>false</has_invoice>
+<has_showcase>false</has_showcase>
+<has_warranty>false</has_warranty>
+<increment>0.00</increment>
+<input_pids>1632501</input_pids>
+<input_str>»õºÅ</input_str>
+<is_virtual>false</is_virtual>
+<item_imgs list="true"><item_img><id>0</id><position>0</position><url>http://img01.taobaocdn.com/bao/uploaded/i1/T1XyhoFztoXXXXXXXX_!!0-item_pic.jpg</url></item_img></item_imgs>
+<location><city>º£Íâ</city><state>º£Íâ</state></location>
+<modified>2014-01-17 07:00:07</modified>
+<nick>51fashion_co_uk</nick>
+<num>8</num>
+<num_iid>37059624838</num_iid>
+<outer_id></outer_id>
+<pic_url>http://img01.taobaocdn.com/bao/uploaded/i1/T1XyhoFztoXXXXXXXX_!!0-item_pic.jpg</pic_url>
+<post_fee>80.00</post_fee>
+<postage_id>804240630</postage_id>
+<price>9950.00</price>
+<product_id>0</product_id>
+<prop_imgs list="true">
+<prop_img><id>14004808520</id><position>0</position><properties>1627207:28326</properties><url>http://img01.taobaocdn.com/bao/uploaded/i1/211999340/T2sY1YXtRaXXXXXXXX_!!211999340.jpg</url></prop_img>
+<prop_img><id>14004808521</id><position>0</position><properties>1627207:28341</properties><url>http://img03.taobaocdn.com/bao/uploaded/i3/211999340/T2b6eZXs8XXXXXXXXX_!!211999340.jpg</url></prop_img>
+</prop_imgs>
+<property_alias>1627207:28341:ºÚÉ«;1627207:28326:BEETROOT</property_alias>
+<props>1632501:4413911;1627207:28326;1627207:28341;20509:28314;20509:28315</props>
+<seller_cids>,841851052,</seller_cids>
+<skus list="true">
+<sku><created>2014-01-17 07:00:07</created><modified>2014-01-17 07:00:07</modified><price>9950.00</price><properties>1627207:28326;20509:28314</properties><properties_name>1627207:28326:ÑÕÉ«·ÖÀà:ºìÉ«;20509:28314:³ßÂë:S</properties_name><quantity>2</quantity><sku_id>39890754219</sku_id></sku>
+<sku><created>2014-01-17 07:00:07</created><modified>2014-01-17 07:00:07</modified><price>9950.00</price><properties>1627207:28341;20509:28314</properties><properties_name>1627207:28341:ÑÕÉ«·ÖÀà:ºÚÉ«;20509:28314:³ßÂë:S</properties_name><quantity>2</quantity><sku_id>39890754220</sku_id></sku>
+<sku><created>2014-01-17 07:00:07</created><modified>2014-01-17 07:00:07</modified><price>9950.00</price><properties>1627207:28326;20509:28315</properties><properties_name>1627207:28326:ÑÕÉ«·ÖÀà:ºìÉ«;20509:28315:³ßÂë:M</properties_name><quantity>2</quantity><sku_id>39890754221</sku_id></sku>
+<sku><created>2014-01-17 07:00:07</created><modified>2014-01-17 07:00:07</modified><price>9950.00</price><properties>1627207:28341;20509:28315</properties><properties_name>1627207:28341:ÑÕÉ«·ÖÀà:ºÚÉ«;20509:28315:³ßÂë:M</properties_name><quantity>2</quantity><sku_id>39890754222</sku_id></sku>
+</skus>
+<stuff_status>new</stuff_status>
+<title>Æ¤ÖÊÓðÈÞ·þ</title>
+<type>fixed</type>
+<valid_thru>7</valid_thru>
+</item>
+</item_get_response><!--top049103.cm4-->

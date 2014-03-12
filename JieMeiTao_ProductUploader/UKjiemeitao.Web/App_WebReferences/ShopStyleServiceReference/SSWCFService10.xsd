@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://UKjiemeitao.taobao.com/SSBrandSynonymsDataObject.xsd" elementFormDefault="qualified" targetNamespace="http://UKjiemeitao.taobao.com/SSBrandSynonymsDataObject.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8058/SSWCFService.svc?xsd=xsd4" namespace="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd" />
+  <xs:complexType name="SSBrandSynonymsDataObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element name="brand_id" type="xs:long" />
+      <xs:element minOccurs="0" name="synonyms_name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd" minOccurs="0" name="Brand" nillable="true" type="q1:SSBrandDataObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SSBrandSynonymsDataObject" nillable="true" type="tns:SSBrandSynonymsDataObject" />
+</xs:schema>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd" elementFormDefault="qualified" targetNamespace="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8058/SSWCFService.svc?xsd=xsd2" namespace="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" />
+  <xs:complexType name="SSBrandDataObject">
+    <xs:sequence>
+      <xs:element name="id" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="brand_id" type="xs:long" />
+      <xs:element minOccurs="0" name="brand_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" minOccurs="0" name="ProductCollection" nillable="true" type="q1:SSProductDataObjectList" />
+      <xs:element xmlns:q2="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" minOccurs="0" name="BrandSynonymsCollection" nillable="true" type="q2:SSBrandSynonymsDataObjectList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SSBrandDataObject" nillable="true" type="tns:SSBrandDataObject" />
+</xs:schema>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TBProductDataObject"
+    targetNamespace="http://UKjiemeitao.taobao.com/TBProductDataObject.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://UKjiemeitao.taobao.com/TBProductDataObject.xsd"
+    xmlns:mstns="http://UKjiemeitao.taobao.com/TBProductDataObject.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:simpleType name="uniqueidentifier">
+    <xs:restriction base="xs:ID"/>
+  </xs:simpleType>
+  <xs:simpleType name="VARCHAR_4000">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CLOB_2147483647">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="2147483647"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DECIMAL_18_2">
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="2"/>
+      <xs:minExclusive value="-10000000000000000"/>
+      <xs:maxExclusive value="10000000000000000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VARCHAR_8000">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="INTEGER">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="-2147483648"/>
+      <xs:maxInclusive value="2147483647"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CHAR_4000">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BIGINT">
+    <xs:restriction base="xs:long">
+      <xs:minInclusive value="-9223372036854775808"/>
+      <xs:maxInclusive value="9223372036854775807"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BOOLEAN">
+    <xs:restriction base="xs:boolean"/>
+  </xs:simpleType>
+  <xs:simpleType name="DECIMAL_9_2">
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="9"/>
+      <xs:fractionDigits value="2"/>
+      <xs:minExclusive value="-10000000"/>
+      <xs:maxExclusive value="10000000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DATE">
+    <xs:restriction base="xs:dateTime">
+      <xs:minInclusive value="1753-01-01T00:00:00.000"/>
+      <xs:maxInclusive value="9999-12-31T23:59:59.999"/>
+      <xs:pattern value="\p{Nd}{4}-\p{Nd}{2}-\p{Nd}{2}T\p{Nd}{2}:\p{Nd}{2}:\p{Nd}{2}(\.\p{Nd}{1,3})?"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TBProductDataObject">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+      <xs:element name="Title" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="Desc" type="CLOB_2147483647" nillable="true" minOccurs="0"/>
+      <xs:element name="Price" type="DECIMAL_18_2" nillable="true" minOccurs="0"/>
+      <xs:element name="StuffStatus" type="VARCHAR_8000" nillable="true" minOccurs="0"/>
+      <xs:element name="Cid" type="INTEGER" nillable="true" minOccurs="0"/>
+      <xs:element name="PropertyAlias" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="Props" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="PicPath" type="CHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="Num" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="Type" type="VARCHAR_8000" nillable="true" minOccurs="0"/>
+      <xs:element name="LocationState" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="LocationCity" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="ApproveStatus" type="VARCHAR_8000" nillable="true" minOccurs="0"/>
+      <xs:element name="FreightPayer" type="VARCHAR_8000" nillable="true" minOccurs="0"/>
+      <xs:element name="ValidThru" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="HasInvoice" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="HasWarranty" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="HasShowcase" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="SellerCids" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="InputPids" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="InputStr" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="HasDiscount" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="PostFee" type="DECIMAL_9_2" nillable="true" minOccurs="0"/>
+      <xs:element name="ExpressFee" type="DECIMAL_9_2" nillable="true" minOccurs="0"/>
+      <xs:element name="EmsFee" type="DECIMAL_9_2" nillable="true" minOccurs="0"/>
+      <xs:element name="ListTime" type="DATE" nillable="true" minOccurs="0"/>
+      <xs:element name="Increment" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="ImgFilePath" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="PostageId" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="AuctionPoint" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="SkuProperties" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="SkuQuantities" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="SkuPrices" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="SkuOuterIds" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="Lang" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="OuterId" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="IsTaobao" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="IsEx" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="Is3D" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="SellPromise" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="AfterSaleId" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="CodPostageId" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="IsLightningConsignment" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="Weight" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="IsXinpin" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="SubStock" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="ItemSize" type="DECIMAL_9_2" nillable="true" minOccurs="0"/>
+      <xs:element name="ItemWeight" type="DECIMAL_9_2" nillable="true" minOccurs="0"/>
+      <xs:element name="ChangeProp" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="DescModules" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="GlobalStockType" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="GlobalStockCountry" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="NumIid" type="BIGINT" nillable="true" minOccurs="0"/>
+      <xs:element name="IsReplaceSku" type="BOOLEAN" nillable="true" minOccurs="0"/>
+      <xs:element name="EmptyFields" type="VARCHAR_4000" nillable="true" minOccurs="0"/>
+      <xs:element name="Status" type="INTEGER" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

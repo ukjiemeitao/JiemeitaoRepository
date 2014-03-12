@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://UKjiemeitao.taobao.com/SSSizeDataObject.xsd" elementFormDefault="qualified" targetNamespace="http://UKjiemeitao.taobao.com/SSSizeDataObject.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8058/SSWCFService.svc?xsd=xsd2" namespace="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" />
+  <xs:complexType name="SSSizeDataObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="size_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cat_id" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd" minOccurs="0" name="ProductCollection" nillable="true" type="q1:SSProductDataObjectList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SSSizeDataObject" nillable="true" type="tns:SSSizeDataObject" />
+</xs:schema>

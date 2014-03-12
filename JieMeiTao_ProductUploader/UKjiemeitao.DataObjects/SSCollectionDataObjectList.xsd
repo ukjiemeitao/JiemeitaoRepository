@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SSCollectionDataObjectList"
+    targetNamespace="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd"
+    xmlns:mstns="http://UKjiemeitao.taobao.com/SSCollectionDataObjectList.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:propProd="http://UKjiemeitao.taobao.com/SSProductDataObject.xsd"
+    xmlns:propBrand="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd"
+    xmlns:propBrandSynonyms="http://UKjiemeitao.taobao.com/SSBrandSynonymsDataObject.xsd"
+    xmlns:propCate="http://UKjiemeitao.taobao.com/SSCategoryDataObject.xsd"
+    xmlns:propImage="http://UKjiemeitao.taobao.com/SSImageDataObject.xsd"
+    xmlns:propColor="http://UKjiemeitao.taobao.com/SSProductColorImageMappingtDataObject.xsd"
+    xmlns:propReta="http://UKjiemeitao.taobao.com/SSRetailerDataObject.xsd"
+    xmlns:propSize="http://UKjiemeitao.taobao.com/SSSizeDataObject.xsd"
+   
+>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSProductDataObject.xsd"/>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSBrandDataObject.xsd"/>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSBrandSynonymsDataObject.xsd"/>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSCategoryDataObject.xsd"/>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSImageDataObject.xsd"/>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSProductColorImageMappingtDataObject.xsd"/>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSRetailerDataObject.xsd"/>
+  <xs:import namespace="http://UKjiemeitao.taobao.com/SSSizeDataObject.xsd"/>
+
+  
+  <xs:complexType name="SSProductDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSProductDataObject" type="propProd:SSProductDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="SSBrandDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSBrandDataObject" type="propBrand:SSBrandDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="SSBrandSynonymsDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSBrandSynonymsDataObject" type="propBrandSynonyms:SSBrandSynonymsDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SSCategoryDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSCategoryDataObject" type="propCate:SSCategoryDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SSImageDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSImageDataObject" type="propImage:SSImageDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SSProductColorImageMappingtDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSProductColorImageMappingtDataObject" type="propColor:SSProductColorImageMappingtDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SSRetailerDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSRetailerDataObject" type="propReta:SSRetailerDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SSSizeDataObjectList">
+    <xs:sequence>
+      <xs:element name="SSSizeDataObject" type="propSize:SSSizeDataObject" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

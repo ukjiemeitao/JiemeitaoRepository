@@ -1,0 +1,4 @@
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\dll\UKjiemeitao.Model.dll
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\dll\UKjiemeitao.Model.pdb
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\UKjiemeitao.Model\obj\Debug\UKjiemeitao.Model.dll
+D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\UKjiemeitao.Model\obj\Debug\UKjiemeitao.Model.pdb

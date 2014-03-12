@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Catalog" Class="TaoBaoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=stma-mac1;Initial Catalog=Catalog;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CatalogConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TB_ItemCat" Member="TB_ItemCats">
+    <Type Name="TB_ItemCat">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="IsParent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedType" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="ParentCid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ItemProp" Member="TB_ItemProps">
+    <Type Name="TB_ItemProp">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentPid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentVid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChildTemplate" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="IsAllowAlias" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsColorProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsEnumProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsInputProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsItemProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsKeyProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsSaleProp" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedType" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Multi" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Must" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Required" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_Product" Member="TB_Products">
+    <Type Name="TB_Product">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="ShopPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="StandardPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="Stuff_Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CatName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="PropertyAlias" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Props" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="PropsStr" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="SaleProps" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="SalePropsStr" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Binds" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="BindsStr" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CustomerProps" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PicPath" Type="System.String" DbType="NChar(1000)" CanBeNull="true" />
+      <Column Name="PicUrl" Type="System.String" DbType="NChar(1000)" CanBeNull="true" />
+      <Column Name="SellPt" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_PropValue" Member="TB_PropValues">
+    <Type Name="TB_PropValue">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IsParent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedType" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NameAlias" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PropName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Vid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
