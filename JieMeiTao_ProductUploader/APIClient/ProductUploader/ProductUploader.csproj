@@ -617,6 +617,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaiDuTranslateService.cs" />
+    <Compile Include="Services\HttpHelper.cs" />
     <Compile Include="Services\ProductItem.cs" />
     <Compile Include="Services\ShopStyleService.cs" />
     <Compile Include="Services\SS_Discount.cs" />
