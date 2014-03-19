@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using Top.Api;
 using Top.Api.Domain;
 using Top.Api.Request;
@@ -16,9 +17,16 @@ namespace ProductUploader.Services
     /// <summary>
     /// 淘宝API产品相关Service
     /// </summary>
-    public static class ProductService 
+    public static class ProductService
     {
-        public static readonly string SessionKey = ConfigurationManager.AppSettings["SessionKey"];
+        public static string SessionKey = ConfigurationManager.AppSettings["SessionKey"];
+        private const string SESSIONKEY = "SESSIONKEY";
+        static ProductService()
+        {
+            if (HttpRuntime.Cache.Get(SESSIONKEY) == null)
+                SessionKey = ConfigurationManager.AppSettings["SessionKey"];
+            SessionKey = HttpRuntime.Cache.Get(SESSIONKEY).ToString();
+        }
 
         #region 商品上传需要用到的方法
         /// <summary>
@@ -177,7 +185,7 @@ namespace ProductUploader.Services
             req.IsItemProp = isitemprop;
             req.ChildPath = childpath;
             req.Type = type;
-            req.AttrKeys = attrkeys;           
+            req.AttrKeys = attrkeys;
             ItempropsGetResponse response = client.Execute(req);
             return response.ItemProps;
         }
@@ -267,7 +275,7 @@ namespace ProductUploader.Services
             req.GlobalStockCountry = item.GlobalStockCountry;
 
             ItemAddResponse response = client.Execute(req, SessionKey);
-            
+
 
             if (response.IsError)
             {
@@ -309,11 +317,11 @@ namespace ProductUploader.Services
         public static PropImg UploadItemPropImg(long numiid, string sku, string imgPath)
         {
             ITopClient client = TopClientService.GetTopClient();
-            ItemPropimgUploadRequest req=new ItemPropimgUploadRequest();
+            ItemPropimgUploadRequest req = new ItemPropimgUploadRequest();
             req.NumIid = numiid;
             req.Properties = sku;
             FileItem fItem = new FileItem(imgPath);
-            req.Image = fItem;                       
+            req.Image = fItem;
             ItemPropimgUploadResponse response = client.Execute(req, SessionKey);
             return response.PropImg;
         }
@@ -324,10 +332,10 @@ namespace ProductUploader.Services
         /// <param name="productID">产品id</param>
         /// <param name="imgPath">图片路径</param>
         /// <param name="fields">属性名：属性值</param>
-        public static void UploadProductProImg(long productID,string imgPath,string fields)
+        public static void UploadProductProImg(long productID, string imgPath, string fields)
         {
             ITopClient client = TopClientService.GetTopClient();
-            ProductPropimgUploadRequest req=new ProductPropimgUploadRequest();          
+            ProductPropimgUploadRequest req = new ProductPropimgUploadRequest();
             req.ProductId = productID;
             req.Props = fields;
             FileItem fItem = new FileItem(imgPath);
@@ -686,7 +694,7 @@ namespace ProductUploader.Services
             ItemGetRequest req = new ItemGetRequest();
             req.Fields = fields;
             req.NumIid = numIid;
-            
+
             ItemGetResponse response = client.Execute(req, SessionKey);
 
             return response.Item;
@@ -709,14 +717,14 @@ namespace ProductUploader.Services
                 return response.SellerCat;
             }
             catch (Exception)
-            {                
+            {
                 throw;
             }
 
-           
+
         }
 
-        
-        #endregion 
+
+        #endregion
     }
 }

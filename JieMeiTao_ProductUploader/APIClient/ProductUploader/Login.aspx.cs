@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Text;
+using System.Web.Caching;
 using Newtonsoft.Json;
 using ProductUploader.DAL;
 using System;
@@ -14,6 +15,7 @@ namespace ProductUploader
 {
     public partial class login : System.Web.UI.Page
     {
+        private const string SESSIONKEY = "SESSIONKEY";
         public static readonly string TokenUrl = ConfigurationManager.AppSettings["TokenUrl"];
         public static readonly string OAuthUrl = ConfigurationManager.AppSettings["OAuthUrl"];
         public static readonly string ServerUrl = ConfigurationManager.AppSettings["ServerUrl"];
@@ -53,6 +55,10 @@ namespace ProductUploader
                     var result = (dynamic)JsonConvert.DeserializeObject(json);
                     Session["SessionKey"] = result.access_token;
                     Session["SessionUsername"] = "Login";
+                    if (Cache[SESSIONKEY] != null)
+                        Cache.Remove(SESSIONKEY);
+                    Cache.Add(SESSIONKEY, result.access_token, null, DateTime.MaxValue, TimeSpan.FromMinutes(60),
+                        CacheItemPriority.High, null);
 
                     Response.Redirect("DownloadSetting.aspx");
                 }
