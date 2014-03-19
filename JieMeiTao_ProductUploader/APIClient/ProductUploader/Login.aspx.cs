@@ -28,12 +28,11 @@ namespace ProductUploader
                 var state = Request.QueryString["state"];
                 if (string.IsNullOrWhiteSpace(state))
                 {
-                    query.Append(OAuthUrl);//沙箱地址
+                    query.Append(OAuthUrl);
                     query.Append(string.Format("?{0}={1}", "client_id", Appkey));
                     query.Append(string.Format("&{0}={1}", "response_type", "code"));
-                    query.Append(string.Format("&{0}={1}", "redirect_uri", Redirect_uri));//上线之后改为 淘宝地址
+                    query.Append(string.Format("&{0}={1}", "redirect_uri", Redirect_uri));
                     query.Append(string.Format("?{0}={1}", "state", "true")); //如果为true，则为淘宝跳转
-
                     Response.Redirect(query.ToString());
                 }
                 else
@@ -53,7 +52,7 @@ namespace ProductUploader
 
                     var result = (dynamic)JsonConvert.DeserializeObject(json);
                     Session["SessionKey"] = result.access_token;
-
+                    Session["SessionUsername"] = "Login";
 
                     Response.Redirect("DownloadSetting.aspx");
                 }

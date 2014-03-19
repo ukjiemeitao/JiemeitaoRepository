@@ -60,6 +60,15 @@
       <HintPath>..\..\packages\shopstyle\IKVM.OpenJDK.Jdbc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\packages\IKVM\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI">
+      <HintPath>..\packages\IKVM\IKVM.Runtime.JNI.dll</HintPath>
+    </Reference>
+    <Reference Include="java-popsugar-shopping-api_fat">
+      <HintPath>..\packages\IKVM\java-popsugar-shopping-api_fat.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,9 +91,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="test">
-      <HintPath>..\..\packages\shopstyle\test.dll</HintPath>
-    </Reference>
     <Reference Include="TopSdk">
       <HintPath>..\..\dll\TopSdk.dll</HintPath>
     </Reference>
