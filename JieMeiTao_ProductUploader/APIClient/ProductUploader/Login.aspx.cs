@@ -27,20 +27,11 @@ namespace ProductUploader
             var query = new StringBuilder();
             if (!IsPostBack)
             {
-                var state = Request.QueryString["state"];
-                if (string.IsNullOrWhiteSpace(state))
+                //如果返回值有Code
+                var code = Request.QueryString["code"];
+                if (!string.IsNullOrWhiteSpace(code))
                 {
-                    query.Append(OAuthUrl);
-                    query.Append(string.Format("?{0}={1}", "client_id", Appkey));
-                    query.Append(string.Format("&{0}={1}", "response_type", "code"));
-                    query.Append(string.Format("&{0}={1}", "redirect_uri", Redirect_uri));
-                    query.Append(string.Format("?{0}={1}", "state", "true")); //如果为true，则为淘宝跳转
-                    Response.Redirect(query.ToString());
-                }
-                else
-                {
-                    var code = Request.QueryString["code"];
-                    if (string.IsNullOrWhiteSpace(code) || string.IsNullOrWhiteSpace(state))
+                    if (string.IsNullOrWhiteSpace(code))
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "aa", "alert('获取授权码失败')", true);
 
                     query.Append(string.Format("{0}={1}", "client_id", Appkey));
@@ -61,7 +52,24 @@ namespace ProductUploader
                         CacheItemPriority.High, null);
 
                     Response.Redirect("DownloadSetting.aspx");
+
                 }
+                var errorStr = Request.QueryString["error"];
+                if (!string.IsNullOrWhiteSpace(errorStr))
+                {
+                    var description = Request.QueryString["error_description"];
+                    if (string.IsNullOrWhiteSpace(description))
+                        description = "淘宝报错了！重新登录一下吧";
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), errorStr, "alert('" + description + "')", true);
+                    Response.Write(string.Format("error_description:{0},description:{1}", errorStr, description));
+                    Response.End();
+                }
+
+                query.Append(OAuthUrl);
+                query.Append(string.Format("?{0}={1}", "client_id", Appkey));
+                query.Append(string.Format("&{0}={1}", "response_type", "code"));
+                query.Append(string.Format("&{0}={1}", "redirect_uri", Redirect_uri));
+                Response.Redirect(query.ToString());
             }
         }
 
