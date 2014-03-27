@@ -1,5 +1,0 @@
-D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\dll\UKjiemeitao.Domain.dll
-D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\dll\UKjiemeitao.Domain.pdb
-D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\UKjiemeitao.Domain\obj\Debug\UKjiemeitao.Domain.csprojResolveAssemblyReference.cache
-D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\UKjiemeitao.Domain\obj\Debug\UKjiemeitao.Domain.dll
-D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\UKjiemeitao.Domain\obj\Debug\UKjiemeitao.Domain.pdb

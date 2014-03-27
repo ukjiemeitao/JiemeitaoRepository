@@ -16,11 +16,11 @@ namespace ShopStyleAPIClient
         static void Main(string[] args)
         {
             //DownloadBrands();
-            //DownloadRetailers();                       
+            DownloadRetailers();                       
             //DownloadCategories();
             //DownloadColors();            
             //DownloadProducts();
-            DownloadSizes("clothes-shoes-and-jewelry");
+            //DownloadSizes("clothes-shoes-and-jewelry");
             //GetProductHistogram();
            
         }
@@ -69,15 +69,21 @@ namespace ShopStyleAPIClient
 
         public static void DownloadRetailers()
         {
-            ShopStyle api = new ShopStyle("uid8409-24047347-36", ShopStyle.UK_API_HOSTNAME);
+            ShopStyle api = new ShopStyle("uid8409-24047347-36",ShopStyle.US_API_HOSTNAME);
 
             var retailerResponse = api.getRetailers();
             using (CatalogDataContext dc = new CatalogDataContext())
             {
                 foreach (Retailer retailer in retailerResponse.getRetailers())
                 {
-                    SS_Retailer ssRetailer = new SS_Retailer() { id = System.Guid.NewGuid(), name = retailer.getName(), retailer_id = (int)retailer.getId(), url = retailer.getUrl() };
-                    dc.SS_Retailers.InsertOnSubmit(ssRetailer);
+                    SS_Retailer obj =  dc.SS_Retailers.SingleOrDefault(r => r.retailer_id == (int)retailer.getId());
+
+                    if (obj == null)
+                    {
+                        SS_Retailer ssRetailer = new SS_Retailer() { id = System.Guid.NewGuid(), name = retailer.getName(), retailer_id = (int)retailer.getId(), url = retailer.getUrl() };
+                        dc.SS_Retailers.InsertOnSubmit(ssRetailer);
+                    }
+                   
                 }
 
                 dc.SubmitChanges();

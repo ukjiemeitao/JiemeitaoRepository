@@ -1,4 +1,0 @@
-﻿SS_Product_Size_Mapping 数据库需要调整：
-1）删除ID
-2）把Size_ID 修改为ID
-3）修改后ID和Product_ID同时设置为主键
