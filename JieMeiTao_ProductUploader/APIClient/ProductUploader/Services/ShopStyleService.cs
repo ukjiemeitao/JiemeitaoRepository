@@ -189,13 +189,13 @@ namespace ProductUploader.Services
 
             System.Guid productSetID;
 
-            using (CatalogDataContext context = new CatalogDataContext()) 
+            using (CatalogDataContext context = new CatalogDataContext())
             {
                 var ps = (from set in context.SS_Product_Sets where set.product_set_name == productSetName select set).SingleOrDefault();
                 if (ps == null)
                 {
-                    SS_Product_Set productSet = new SS_Product_Set() { id = System.Guid.NewGuid(), product_set_name = productSetName, tb_seller_cid = ProductService.AddSellerCat(productSetName).Cid, datetimecreated = (DateTime ?)DateTime.Now };
-                    
+                    SS_Product_Set productSet = new SS_Product_Set() { id = System.Guid.NewGuid(), product_set_name = productSetName, tb_seller_cid = ProductService.AddSellerCat(productSetName).Cid, datetimecreated = (DateTime?)DateTime.Now };
+
                     context.SS_Product_Sets.InsertOnSubmit(productSet);
                     context.SubmitChanges();
                     productSetID = productSet.id;
@@ -203,9 +203,9 @@ namespace ProductUploader.Services
                 else
                     productSetID = ps.id;
 
-               
+
             }
-                                   
+
             for (int i = 0; i < pageCount; i++)
             {
                 PageRequest page = new PageRequest().withLimit(100).withOffset(offset);
@@ -320,7 +320,7 @@ namespace ProductUploader.Services
                             SS_Product ssProduct = dc.SS_Products.FirstOrDefault(x => x.product_id == product.getId());
 
                             SS_Product_Color_Image_Mapping pciMapping = new SS_Product_Color_Image_Mapping();
-                            pciMapping.id =  System.Guid.NewGuid();
+                            pciMapping.id = System.Guid.NewGuid();
                             pciMapping.color_name = color.getName();
                             pciMapping.product_id = (int)product.getId();
 
@@ -330,10 +330,10 @@ namespace ProductUploader.Services
                             }
                             else
                             {
-                                pciMapping.image_id =  color.getImage().getId();
-                            }                                                           
+                                pciMapping.image_id = color.getImage().getId();
+                            }
 
-                            
+
 
                             if (color.getImage() != null)
                             {
@@ -360,7 +360,7 @@ namespace ProductUploader.Services
 
                                         }
                                     }
-                                }                               
+                                }
                             }
 
                             dc.SS_Product_Color_Image_Mappings.InsertOnSubmit(pciMapping);
