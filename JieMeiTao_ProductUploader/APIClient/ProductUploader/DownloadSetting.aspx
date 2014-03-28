@@ -158,8 +158,7 @@
                     <%# DataBinder.Eval(Container.DataItem,"key") %></a>
                     <a href="JavaScript:void(0)">
                         <%# DataBinder.Eval(Container.DataItem,"Value.Key") %></a>
-                    <a href="JavaScript:void(0)">
-                        <%# DataBinder.Eval(Container.DataItem,"Value.Value") %></a>
+                    <a href="<%# DataBinder.Eval(Container.DataItem,"Value.Value") %>">查看</a>
                 </li>
             </ItemTemplate>
             <FooterTemplate></ol></FooterTemplate>
