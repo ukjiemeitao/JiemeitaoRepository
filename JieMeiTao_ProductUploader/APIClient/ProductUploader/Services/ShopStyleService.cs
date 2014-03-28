@@ -128,6 +128,39 @@ namespace ProductUploader.Services
 
         }
 
+        public List<Product> SearcProducts(string fts, string catID, string brandFilterID, string retailerFilterID,
+            string priceFilterID, string discountFilterID, string productSetName)
+        {
+            ProductQuery query = new ProductQuery();
+            if (!string.IsNullOrEmpty(fts))
+                query.withFreeText(fts);
+            if (!string.IsNullOrEmpty(catID))
+                query.withCategory(catID); // Category jackets
+            if (!string.IsNullOrEmpty(brandFilterID))
+                query.withFilter(brandFilterID); // Brand filter id
+            if (!string.IsNullOrEmpty(retailerFilterID))
+                query.withFilter(retailerFilterID);// Retailer filter id
+            if (!string.IsNullOrEmpty(priceFilterID))
+                query.withFilter(priceFilterID); // Price filter id
+            if (!string.IsNullOrEmpty(discountFilterID))
+                query.withFilter(discountFilterID); // Discount filter id
+
+            var response = api.getProducts(query);
+            ProductSearchMetadata metadata = response.getMetadata();
+            int total = metadata.getTotal(); // pageCounter = total/limit, these three values are being used to calculate paging. 
+            int limit = metadata.getLimit();
+            int offset = metadata.getOffset();
+            int pageCount = (int)Math.Ceiling((double)total / 100);
+            List<Product> list = new List<Product>();
+            for (int i = 0; i < pageCount; i++)
+            {
+                PageRequest page = new PageRequest().withLimit(100).withOffset(offset);
+                var productResponse = api.getProducts(query, page, ProductSort.PriceLoHi);
+                list.AddRange(productResponse.getProducts());
+            }
+            return list;
+        }
+
         public void DownloadProducts(string fts, string catID, string brandFilterID, string retailerFilterID, string priceFilterID, string discountFilterID, string productSetName)
         {
 
