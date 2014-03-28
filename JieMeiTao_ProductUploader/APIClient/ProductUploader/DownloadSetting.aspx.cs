@@ -16,9 +16,9 @@ namespace ProductUploader
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) 
+            if (!IsPostBack)
             {
-                using(CatalogDataContext dct = new CatalogDataContext())
+                using (CatalogDataContext dct = new CatalogDataContext())
                 {
                     ddlBrands.DataSource = dct.SS_Brands.OrderBy(b => b.brand_name);
                     ddlBrands.DataTextField = "brand_name";
@@ -45,7 +45,7 @@ namespace ProductUploader
                     ddlColors.DataBind();
                     ddlRetailers.Items.Insert(0, new ListItem("", ""));
                 }
-               
+
             }
 
         }
@@ -61,7 +61,7 @@ namespace ProductUploader
                 using (ShopStyleService ssService = new ShopStyleService())
                 {
                     List<SS_Discount> dcList;
-                    List<SS_Price> pList = ssService.GetPriceAndDiscountRange(ddlCategories.SelectedValue, "b" + ddlBrands.SelectedValue,"r" + ddlRetailers.SelectedValue, out dcList);
+                    List<SS_Price> pList = ssService.GetPriceAndDiscountRange(ddlCategories.SelectedValue, "b" + ddlBrands.SelectedValue, "r" + ddlRetailers.SelectedValue, out dcList);
 
                     if (pList != null && pList.Count > 0)
                     {
@@ -69,7 +69,7 @@ namespace ProductUploader
                         lsbprice.DataValueField = "FilterID";
                         lsbprice.DataSource = pList;
                         lsbprice.DataBind();
-                        
+
                     }
 
                     if (dcList != null && dcList.Count > 0)
@@ -87,7 +87,7 @@ namespace ProductUploader
                         lsbsize.DataValueField = "size_id";
                         lsbsize.DataSource = sList;
                         lsbsize.DataBind();
-                    }   
+                    }
                 }
             }
             catch (ShopStyle.APIException ex)
@@ -100,7 +100,7 @@ namespace ProductUploader
                 string message = ex.Message.Replace("\n", "\\n").Replace("\r", "").Replace("'", "\\'");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + message + "')", true);
             }
-           
+
         }
 
         protected void btndownload_Click(object sender, EventArgs e)
@@ -117,10 +117,36 @@ namespace ProductUploader
                 string message = ex.Message.Replace("\n", "\\n").Replace("\r", "").Replace("'", "\\'");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + message + "')", true);
             }
-           
+
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (ShopStyleService ssService = new ShopStyleService())
+                {
+                    var list = ssService.SearcProducts(txtfts.Text, ddlCategories.SelectedValue, "b" + ddlBrands.SelectedValue, "r" + ddlRetailers.SelectedValue, lsbprice.SelectedValue, lsbdiscount.SelectedValue, txtProSetName.Text);
+                    Dictionary<long, KeyValuePair<string, string>> goods =
+                        new Dictionary<long, KeyValuePair<string, string>>();
+                    foreach (var item in list)
+                    {
+                        if (!goods.ContainsKey(item.getId()))
+                            goods.Add(item.getId(), new KeyValuePair<string, string>(item.getName(), item.getClickUrl()));
+                    }
+                    re_goods.DataSource = goods;
+                    re_goods.DataBind();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.Replace("\n", "\\n").Replace("\r", "").Replace("'", "\\'");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + message + "')", true);
+            }
         }
 
     }
 
-  
+
 }
