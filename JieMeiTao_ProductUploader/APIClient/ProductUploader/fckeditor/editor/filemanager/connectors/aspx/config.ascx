@@ -53,7 +53,7 @@
 		// Use the following setting it you prefer to explicitely specify the
 		// absolute path. Examples: 'C:\\MySite\\userfiles\\' or '/root/mysite/userfiles/'.
 		// Attention: The above 'UserFilesPath' URL must point to the same directory.
-		UserFilesAbsolutePath = @"D:\Development\JieMeiTaoRepository\JieMeiTao_ProductUploader\APIClient\ProductUploader\Files\";
+        UserFilesAbsolutePath = @"D:\jiemeitao\ProductUploader\Files\";
 
 		// Due to security issues with Apache modules, it is recommended to leave the
 		// following setting enabled.
