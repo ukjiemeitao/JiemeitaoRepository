@@ -4,16 +4,86 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css" media="all">
-        .auto-style6 { width: 99px; height: 37px; }
-        .auto-style7 { width: 150px; height: 37px; }
-        .auto-style8 { height: 37px; }
-        .auto-style9 { width: 99px; height: 42px; }
-        .auto-style10 { width: 150px; height: 42px; }
-        .auto-style11 { height: 42px; }
-        .auto-style12 { width: 99px; height: 39px; }
-        .auto-style13 { width: 150px; height: 39px; }
-        .auto-style14 { height: 39px; }
+        .auto-style6 {
+            width: 99px;
+            height: 37px;
+        }
+
+        .auto-style7 {
+            width: 150px;
+            height: 37px;
+        }
+
+        .auto-style8 {
+            height: 37px;
+        }
+
+        .auto-style9 {
+            width: 99px;
+            height: 42px;
+        }
+
+        .auto-style10 {
+            width: 150px;
+            height: 42px;
+        }
+
+        .auto-style11 {
+            height: 42px;
+        }
+
+        .auto-style12 {
+            width: 99px;
+            height: 39px;
+        }
+
+        .auto-style13 {
+            width: 150px;
+            height: 39px;
+        }
+
+        .auto-style14 {
+            height: 39px;
+        }
+
+        .glist {
+            float: left;
+            width: 233px;
+        }
+        .glist a {
+            text-decoration:none;
+        }
     </style>
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnDownload").click(function () {
+                var selectItems = new Array();
+                $("input[name=goods]:checked").each(function () {
+                    selectItems.push($(this).val());
+                });
+                $.ajax({
+                    url: "DownloadSetting.aspx",
+                    type: "POST",
+                    data: {
+                        Pid: selectItems.join(),
+                        Catid: $("#MainContent_ddlCategories").val(),
+                        ProSetName: $("#MainContent_txtProSetName").val(),
+                        Fts: $("#MainContent_txtfts").val()
+                    },
+                    success: function (data) {
+                        var obj = eval("(" + data + ")");
+                        if (obj.data == "0")
+                            alert("未读取到缓存");
+                        else if (obj.data == "-1")
+                            alert(obj.msg);
+                        else
+                            alert("下载成功");
+                    }
+                });
+            });
+        })
+    </script>
 </asp:Content>
 
 
@@ -79,6 +149,7 @@
 
                 <td class="auto-style14">
                     <asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
+                    <input id="btnDownload" type="button" name="name" value="下载选择商品" />
                     <asp:Button ID="btndownload" runat="server" Text="开始下载" OnClick="btndownload_Click" />
                 </td>
             </tr>
@@ -148,17 +219,17 @@
             </tr>
         </table>
     </div>
-    <div>
+    <div id="goodsList">
         <asp:Repeater ID="re_goods" runat="server">
             <HeaderTemplate>
                 <ol>
             </HeaderTemplate>
             <ItemTemplate>
-                <li><a href="JavaScript:void(0)">
-                    <%# DataBinder.Eval(Container.DataItem,"key") %></a>
-                    <a href="JavaScript:void(0)">
-                        <%# DataBinder.Eval(Container.DataItem,"Value.Key") %></a>
-                    <a href="<%# DataBinder.Eval(Container.DataItem,"Value.Value") %>">查看</a>
+                <li class="glist">
+                    <a href="<%# DataBinder.Eval(Container.DataItem,"Item3") %>" target="_blank">
+                        <img src="<%# DataBinder.Eval(Container.DataItem,"Item4") %>" title="<%# DataBinder.Eval(Container.DataItem,"Item2") %>" />
+                    </a>
+                    <input type="checkbox" name="goods" value=" <%# DataBinder.Eval(Container.DataItem,"Item1") %>" />
                 </li>
             </ItemTemplate>
             <FooterTemplate></ol></FooterTemplate>

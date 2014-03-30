@@ -21,7 +21,7 @@ namespace ProductUploader
         public static readonly string ServerUrl = ConfigurationManager.AppSettings["ServerUrl"];
         public static readonly string Appkey = ConfigurationManager.AppSettings["Appkey"];
         public static readonly string Appsecret = ConfigurationManager.AppSettings["Appsecret"];
-        public static readonly string Redirect_uri = ConfigurationManager.AppSettings["Redirect_uri"];
+        public static readonly string RedirectUri = ConfigurationManager.AppSettings["Redirect_uri"];
         protected void Page_Load(object sender, EventArgs e)
         {
             var query = new StringBuilder();
@@ -38,7 +38,7 @@ namespace ProductUploader
                     query.Append(string.Format("&{0}={1}", "client_secret", Appsecret));
                     query.Append(string.Format("&{0}={1}", "grant_type", "authorization_code"));
                     query.Append(string.Format("&{0}={1}", "code", code));
-                    query.Append(string.Format("&{0}={1}", "redirect_uri", Redirect_uri));
+                    query.Append(string.Format("&{0}={1}", "redirect_uri", RedirectUri));
                     var json = HttpHelper.Post(TokenUrl, query.ToString());
                     if (string.IsNullOrWhiteSpace(json))
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "aa", "alert('获取访问令牌失败')", true);
@@ -60,7 +60,6 @@ namespace ProductUploader
                     var description = Request.QueryString["error_description"];
                     if (string.IsNullOrWhiteSpace(description))
                         description = "淘宝报错了！重新登录一下吧";
-                    //ScriptManager.RegisterStartupScript(this, this.GetType(), errorStr, "alert('" + description + "')", true);
                     Response.Write(string.Format("error_description:{0},description:{1}", errorStr, description));
                     Response.End();
                 }
@@ -68,7 +67,7 @@ namespace ProductUploader
                 query.Append(OAuthUrl);
                 query.Append(string.Format("?{0}={1}", "client_id", Appkey));
                 query.Append(string.Format("&{0}={1}", "response_type", "code"));
-                query.Append(string.Format("&{0}={1}", "redirect_uri", Redirect_uri));
+                query.Append(string.Format("&{0}={1}", "redirect_uri", RedirectUri));
                 Response.Redirect(query.ToString());
             }
         }
