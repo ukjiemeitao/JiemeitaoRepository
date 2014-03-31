@@ -457,7 +457,9 @@ namespace ProductUploader.Services
 
                 foreach (var product in productResponse.getProducts())
                 {
-                    using (CatalogDataContext dc = new CatalogDataContext())
+                    try
+                    {
+                         using (CatalogDataContext dc = new CatalogDataContext())
                     {
                         if (dc.SS_Products.FirstOrDefault(x => x.product_id == product.getId()) != null)
                         {
@@ -650,6 +652,11 @@ namespace ProductUploader.Services
                                 dc.SubmitChanges();
                             }
                         }
+                    }
+                    }
+                    catch (Exception)
+                    {                        
+                        continue;
                     }
                 }
                 offset += 100;
