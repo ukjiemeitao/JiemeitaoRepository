@@ -253,6 +253,7 @@ namespace ProductUploader.Services
                         }
                     }
 
+                     
                     //insert main image
                     foreach (ImageSize imageSize in product.getImage().getSizes().values().toArray())
                     {
