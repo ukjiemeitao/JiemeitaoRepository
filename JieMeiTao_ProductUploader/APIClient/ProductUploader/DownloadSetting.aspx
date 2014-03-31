@@ -50,9 +50,10 @@
             float: left;
             width: 233px;
         }
-        .glist a {
-            text-decoration:none;
-        }
+
+            .glist a {
+                text-decoration: none;
+            }
     </style>
     <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
@@ -77,6 +78,8 @@
                             alert("未读取到缓存");
                         else if (obj.data == "-1")
                             alert(obj.msg);
+                        else if (obj.data == "-2")
+                            window.location.href = data.msg;
                         else
                             alert("下载成功");
                     }
