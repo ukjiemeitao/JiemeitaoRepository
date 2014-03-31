@@ -14,7 +14,7 @@ namespace ProductUploader
             base.OnInit(e);
             if (Request.Params["Pid"] != null && string.IsNullOrEmpty(LoginName))
             {
-                Response.Write("{'data':'-2',msg='" + RedirectUri + "'}");
+                Response.Write("{'data':'-2',msg':'" + RedirectUri + "'}");
                 Response.End();
             }
             if (string.IsNullOrEmpty(LoginName))
