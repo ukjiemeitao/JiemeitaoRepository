@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using com.shopstyle.api;
 using com.shopstyle.bo;
 using ProductUploader.DAL;
@@ -14,7 +13,6 @@ namespace ProductUploader.Services
     {
         private ShopStyle api;
         private readonly string partnerKey = "uid8409-24047347-36";
-
         public ShopStyleService()
         {
 
@@ -128,6 +126,280 @@ namespace ProductUploader.Services
 
         }
 
+
+        public List<Product> SearcProducts(string fts, string catId, string brandFilterID, string retailerFilterID,
+            string priceFilterId, string discountFilterId, string productSetName)
+        {
+            var query = new ProductQuery();
+            if (!string.IsNullOrEmpty(fts))
+                query.withFreeText(fts);
+            if (!string.IsNullOrEmpty(catId))
+                query.withCategory(catId); // Category jackets
+            if (!string.IsNullOrEmpty(brandFilterID))
+                query.withFilter(brandFilterID); // Brand filter id
+            if (!string.IsNullOrEmpty(retailerFilterID))
+                query.withFilter(retailerFilterID);// Retailer filter id
+            if (!string.IsNullOrEmpty(priceFilterId))
+                query.withFilter(priceFilterId); // Price filter id
+            if (!string.IsNullOrEmpty(discountFilterId))
+                query.withFilter(discountFilterId); // Discount filter id
+
+            var response = api.getProducts(query);
+            ProductSearchMetadata metadata = response.getMetadata();
+            int total = metadata.getTotal(); // pageCounter = total/limit, these three values are being used to calculate paging. 
+            int limit = metadata.getLimit();
+            int offset = metadata.getOffset();
+            int pageCount = (int)Math.Ceiling((double)total / 100);
+            var list = new List<Product>();
+            for (int i = 0; i < pageCount; i++)
+            {
+                PageRequest page = new PageRequest().withLimit(100).withOffset(offset);
+                var productResponse = api.getProducts(query, page, ProductSort.PriceLoHi);
+                list.AddRange(productResponse.getProducts());
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 下载选择的商品
+        /// </summary>
+        /// <param name="fts">关键词</param>
+        /// <param name="catId">分类</param>
+        /// <param name="productSetName">商品组名称</param>
+        /// <param name="selectList"></param>
+        internal void DownloadProductsByProducts(string fts, string catId, string productSetName, List<Product> selectList)
+        {
+            var productSetID = new Guid();
+            foreach (var product in selectList)
+            {
+                using (var dc = new CatalogDataContext())
+                {
+                    if (dc.SS_Products.FirstOrDefault(x => x.product_id == product.getId()) != null)
+                    {
+                        continue;
+                    }
+                }
+
+                using (CatalogDataContext context = new CatalogDataContext())
+                {
+                    var ps = (from set in context.SS_Product_Sets where set.product_set_name == productSetName select set).SingleOrDefault();
+                    if (ps == null)
+                    {
+                        SS_Product_Set productSet = new SS_Product_Set()
+                        {
+                            id = System.Guid.NewGuid(),
+                            product_set_name = productSetName,
+                            tb_seller_cid = ProductService.AddSellerCat(productSetName).Cid,
+                            datetimecreated = (DateTime?)DateTime.Now
+                        };
+
+                        context.SS_Product_Sets.InsertOnSubmit(productSet);
+                        context.SubmitChanges();
+                        productSetID = productSet.id;
+                    }
+                    else
+                        productSetID = ps.id;
+
+
+                }
+
+                #region SS_Products
+                using (var dc = new CatalogDataContext())
+                {
+                    var ssProduct = new SS_Product()
+                    {
+                        id = System.Guid.NewGuid(),
+                        brand_id = (int?)product.getBrand().getId(),
+                        click_url = product.getClickUrl(),
+                        currency = product.getCurrency().getCurrencyCode(),
+                        description = product.getDescription(),
+                        chinese_description = getTranslateResult(stripOffHTMLTags(product.getDescription()), true) ?? string.Empty,
+                        image_id = product.getImage().getId(),
+                        in_stock = product.isInStock(),
+                        locale = product.getLocale().getDisplayCountry(),
+                        name = product.getName(),
+                        chinese_name = product.getBrand().getName() + getTranslateResult(product.getName(), false) ?? string.Empty,
+                        price = (decimal?)product.getPrice(),
+                        price_label = product.getPriceLabel(),
+                        retailer_id = (int?)product.getRetailer().getId(),
+                        product_id = (int)product.getId(),
+                        sale_price = (decimal?)product.getSalePrice() == 0 ? null : (decimal?)product.getSalePrice(),
+                        sale_price_label = product.getSalePriceLabel(),
+                        istranslated = false,
+                        keyword = fts,
+                        datetimecreated = DateTime.Now,
+                        product_set_name_id = productSetID
+                    };
+                    dc.SS_Products.InsertOnSubmit(ssProduct);
+                    dc.SubmitChanges();
+                }
+                #endregion
+
+                #region SS_Product_Category_Mapping
+                using (CatalogDataContext dc = new CatalogDataContext())
+                {
+                    SS_Product ssProduct = dc.SS_Products.FirstOrDefault(x => x.product_id == product.getId());
+
+                    //Insert categories and product-category mapping records
+                    if (!string.IsNullOrEmpty(catId))
+                    {
+                        SS_Product_Category_Mapping pcMapping = new SS_Product_Category_Mapping()
+                        {
+                            id = System.Guid.NewGuid(),
+                            product_id = ssProduct.product_id,
+                            cat_id = catId
+                        };
+                        dc.SS_Product_Category_Mappings.InsertOnSubmit(pcMapping);
+                        dc.SubmitChanges();
+                    }
+                    else
+                    {
+                        foreach (var category in product.getCategories())
+                        {
+                            if (ssProduct != null)
+                            {
+                                SS_Product_Category_Mapping pcMapping = new SS_Product_Category_Mapping() { id = System.Guid.NewGuid(), product_id = ssProduct.product_id, cat_id = category.getId() };
+                                dc.SS_Product_Category_Mappings.InsertOnSubmit(pcMapping);
+                                dc.SubmitChanges();
+                            }
+                            else
+                            {
+                                throw new ArgumentNullException("Could not find the newly inserted product");
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                //insert main image
+                #region insert main image
+                foreach (ImageSize imageSize in product.getImage().getSizes().values().toArray())
+                {
+                    using (CatalogDataContext dc1 = new CatalogDataContext())
+                    {
+                        SS_Product ssProduct = dc1.SS_Products.FirstOrDefault(x => x.product_id == product.getId());
+
+
+                        SS_Image image = new SS_Image()
+                        {
+                            id = System.Guid.NewGuid(),
+                            size_name = imageSize.getSizeName().toString(),
+                            image_id = ssProduct.image_id,
+                            url = imageSize.getUrl(),
+                            height = imageSize.getHeight(),
+                            width = imageSize.getWidth()
+                        };
+                        dc1.SS_Images.InsertOnSubmit(image);
+                        dc1.SubmitChanges();
+
+
+                    }
+                }
+                #endregion
+
+                //Isert product_color_image_mapping records
+                #region Colors
+                foreach (var color in product.getColors())
+                {
+                    using (CatalogDataContext dc = new CatalogDataContext())
+                    {
+
+                        SS_Product ssProduct = dc.SS_Products.FirstOrDefault(x => x.product_id == product.getId());
+
+                        SS_Product_Color_Image_Mapping pciMapping = new SS_Product_Color_Image_Mapping();
+                        pciMapping.id = System.Guid.NewGuid();
+                        pciMapping.color_name = color.getName();
+                        pciMapping.product_id = (int)product.getId();
+
+                        if (color.getImage() == null)
+                        {
+                            pciMapping.image_id = ssProduct.image_id;//if there's no image element inside color element, that means only one color available.
+                        }
+                        else
+                        {
+                            pciMapping.image_id = color.getImage().getId();
+                        }
+
+
+
+                        if (color.getImage() != null)
+                        {
+                            var ssImage = (from image in dc.SS_Images where image.image_id == color.getImage().getId() select image).FirstOrDefault();
+
+                            if (ssImage == null)
+                            {
+                                foreach (ImageSize imageSize in color.getImage().getSizes().values().toArray())
+                                {
+                                    using (CatalogDataContext dc1 = new CatalogDataContext())
+                                    {
+
+                                        SS_Image image = new SS_Image()
+                                        {
+                                            id = System.Guid.NewGuid(),
+                                            size_name = imageSize.getSizeName().toString(),
+                                            image_id = pciMapping.image_id,
+                                            url = imageSize.getUrl(),
+                                            height = imageSize.getHeight(),
+                                            width = imageSize.getWidth()
+                                        };
+                                        dc1.SS_Images.InsertOnSubmit(image);
+                                        dc1.SubmitChanges();
+
+                                    }
+                                }
+                            }
+                        }
+
+                        dc.SS_Product_Color_Image_Mappings.InsertOnSubmit(pciMapping);
+                        dc.SubmitChanges();
+                    }
+
+                }
+                #endregion
+
+                //Insert size and product_size_mapping
+                #region Size
+                foreach (var size in product.getSizes())
+                {
+                    using (CatalogDataContext dc = new CatalogDataContext())
+                    {
+                        SS_Size result = dc.SS_Sizes.FirstOrDefault(x => x.name == size.getName());
+
+                        if (result == null)
+                        {
+                            System.Guid sizeId;
+                            using (CatalogDataContext dc1 = new CatalogDataContext())
+                            {
+                                SS_Size s = new SS_Size() { id = System.Guid.NewGuid(), name = size.getName() };
+                                dc1.SS_Sizes.InsertOnSubmit(s);
+                                dc1.SubmitChanges();
+
+                                sizeId = s.id;
+                            }
+
+                            using (CatalogDataContext dc2 = new CatalogDataContext())
+                            {
+                                SS_Product_Size_Mapping psMapping = new SS_Product_Size_Mapping() { id = System.Guid.NewGuid(), product_id = (int)product.getId(), size_id = sizeId };
+                                dc2.SS_Product_Size_Mappings.InsertOnSubmit(psMapping);
+                                dc2.SubmitChanges();
+                            }
+
+
+                        }
+                        else
+                        {
+                            SS_Product_Size_Mapping psMapping = new SS_Product_Size_Mapping() { id = System.Guid.NewGuid(), product_id = (int)product.getId(), size_id = result.id };
+                            dc.SS_Product_Size_Mappings.InsertOnSubmit(psMapping);
+                            dc.SubmitChanges();
+                        }
+                    }
+
+                }
+                #endregion
+            }
+
+        }
+
         public void DownloadProducts(string fts, string catID, string brandFilterID, string retailerFilterID, string priceFilterID, string discountFilterID, string productSetName)
         {
 
@@ -155,13 +427,19 @@ namespace ProductUploader.Services
 
             System.Guid productSetID;
 
-            using (CatalogDataContext context = new CatalogDataContext()) 
+            using (CatalogDataContext context = new CatalogDataContext())
             {
                 var ps = (from set in context.SS_Product_Sets where set.product_set_name == productSetName select set).SingleOrDefault();
                 if (ps == null)
                 {
-                    SS_Product_Set productSet = new SS_Product_Set() { id = System.Guid.NewGuid(), product_set_name = productSetName, tb_seller_cid = ProductService.AddSellerCat(productSetName).Cid, datetimecreated = (DateTime ?)DateTime.Now };
-                    
+                    SS_Product_Set productSet = new SS_Product_Set()
+                    {
+                        id = System.Guid.NewGuid(),
+                        product_set_name = productSetName,
+                        tb_seller_cid = ProductService.AddSellerCat(productSetName).Cid,
+                        datetimecreated = (DateTime?)DateTime.Now
+                    };
+
                     context.SS_Product_Sets.InsertOnSubmit(productSet);
                     context.SubmitChanges();
                     productSetID = productSet.id;
@@ -169,9 +447,9 @@ namespace ProductUploader.Services
                 else
                     productSetID = ps.id;
 
-               
+
             }
-                                   
+
             for (int i = 0; i < pageCount; i++)
             {
                 PageRequest page = new PageRequest().withLimit(100).withOffset(offset);
@@ -253,7 +531,6 @@ namespace ProductUploader.Services
                         }
                     }
 
-                     
                     //insert main image
                     foreach (ImageSize imageSize in product.getImage().getSizes().values().toArray())
                     {
@@ -287,7 +564,7 @@ namespace ProductUploader.Services
                             SS_Product ssProduct = dc.SS_Products.FirstOrDefault(x => x.product_id == product.getId());
 
                             SS_Product_Color_Image_Mapping pciMapping = new SS_Product_Color_Image_Mapping();
-                            pciMapping.id =  System.Guid.NewGuid();
+                            pciMapping.id = System.Guid.NewGuid();
                             pciMapping.color_name = color.getName();
                             pciMapping.product_id = (int)product.getId();
 
@@ -297,10 +574,10 @@ namespace ProductUploader.Services
                             }
                             else
                             {
-                                pciMapping.image_id =  color.getImage().getId();
-                            }                                                           
+                                pciMapping.image_id = color.getImage().getId();
+                            }
 
-                            
+
 
                             if (color.getImage() != null)
                             {
@@ -327,7 +604,7 @@ namespace ProductUploader.Services
 
                                         }
                                     }
-                                }                               
+                                }
                             }
 
                             dc.SS_Product_Color_Image_Mappings.InsertOnSubmit(pciMapping);
@@ -500,5 +777,7 @@ namespace ProductUploader.Services
         {
             api.close();
         }
+
+
     }
 }
