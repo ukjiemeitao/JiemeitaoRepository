@@ -199,9 +199,6 @@ namespace ProductUploader
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            lsbprice.Items.Clear();
-            lsbdiscount.Items.Clear();
-            lsbsize.Items.Clear();
             try
             {
                 using (var ssService = new ShopStyleService())
