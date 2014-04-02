@@ -149,7 +149,7 @@ namespace ProductUploader.Services
             int total = metadata.getTotal(); // pageCounter = total/limit, these three values are being used to calculate paging. 
             int limit = metadata.getLimit();
             int offset = metadata.getOffset();
-            int pageCount = (int)Math.Ceiling((double)total / 100);
+            int pageCount = (int)Math.Ceiling((double)total / limit);
             var list = new List<Product>();
             for (int i = 0; i < pageCount; i++)
             {
@@ -180,12 +180,12 @@ namespace ProductUploader.Services
                     }
                 }
 
-                using (CatalogDataContext context = new CatalogDataContext())
+                using (var context = new CatalogDataContext())
                 {
                     var ps = (from set in context.SS_Product_Sets where set.product_set_name == productSetName select set).SingleOrDefault();
                     if (ps == null)
                     {
-                        SS_Product_Set productSet = new SS_Product_Set()
+                        var productSet = new SS_Product_Set()
                         {
                             id = System.Guid.NewGuid(),
                             product_set_name = productSetName,
