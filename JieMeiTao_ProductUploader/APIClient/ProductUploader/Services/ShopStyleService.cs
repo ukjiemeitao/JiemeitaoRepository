@@ -149,7 +149,7 @@ namespace ProductUploader.Services
             int total = metadata.getTotal(); // pageCounter = total/limit, these three values are being used to calculate paging. 
             int limit = metadata.getLimit();
             int offset = metadata.getOffset();
-            int pageCount = (int)Math.Ceiling((double)total / limit);
+            int pageCount = (int)Math.Ceiling((double)total / 100);
             var list = new List<Product>();
             for (int i = 0; i < pageCount; i++)
             {
