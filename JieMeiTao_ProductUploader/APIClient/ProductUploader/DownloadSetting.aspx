@@ -55,10 +55,23 @@
                 text-decoration: none;
             }
     </style>
-    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="Content/js/jquery-1.9.0.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="Content/js/dialog.js"></script>
     <script type="text/javascript">
         $(function () {
+           
+            /*下载商品*/
             $("#btnDownload").click(function () {
+                //$.Dialog({
+                //    'content': 'HTML contentsdf',
+                //    'overlay': true,
+                //    'closeButton': true,
+                //    'buttonsAlign': 'right',
+                //    'position': {
+                //        'zone': 'right'
+                //    }
+                //});
                 var selectItems = new Array();
                 $("input[name=goods]:checked").each(function () {
                     selectItems.push($(this).val());
