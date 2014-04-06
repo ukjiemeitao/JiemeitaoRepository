@@ -3,7 +3,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css" media="all">
+    <style>
+        <style type="text/css" media="all">
         .auto-style6 {
             width: 99px;
             height: 37px;
@@ -55,27 +56,55 @@
                 text-decoration: none;
             }
     </style>
+    </style>
+    <link href="Content/css/modern.css" rel="stylesheet" />
+    <link href="Content/css/modern-responsive.css" rel="stylesheet" />
+    <link rel="stylesheet/less" type="text/css" href="Content/css/dialog.less">
     <script src="Content/js/jquery-1.9.0.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="Content/js/dialog.js"></script>
+    <style>
+        .loading_box {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            z-index: 99999;
+            padding: 10px 20px;
+            color: #333;
+            font-weight: bold;
+            background: #feffc8;
+            border: 1px solid #f1aa2d;
+        }
+
+        .loading_box span {
+            background: url("Content/images/msg_loading.gif") no-repeat;
+            padding-left: 22px;
+        }
+    </style>
     <script type="text/javascript">
         $(function () {
-           
+            //处理提示框
+            var handlebox = $('<div class="loading_box"><span>正在处理中..</span></div><div class="bg_overlay"></div>');
+            $.fn.extend({
+                handleboxopen: function () {
+                    var $doc = $;
+                    if (window.location != window.parent.location) {
+                        //页面在iframe中
+                        $doc = window.parent.$;
+                    }
+                    $doc("body").append(handlebox);
+                    handlebox.show();
+                },
+                handleboxclose: function () {
+                    handlebox.remove();
+                }
+            });
             /*下载商品*/
             $("#btnDownload").click(function () {
-                //$.Dialog({
-                //    'content': 'HTML contentsdf',
-                //    'overlay': true,
-                //    'closeButton': true,
-                //    'buttonsAlign': 'right',
-                //    'position': {
-                //        'zone': 'right'
-                //    }
-                //});
                 var selectItems = new Array();
                 $("input[name=goods]:checked").each(function () {
                     selectItems.push($(this).val());
                 });
+                $.fn.handleboxopen();
                 $.ajax({
                     url: "DownloadSetting.aspx",
                     type: "POST",
@@ -86,6 +115,7 @@
                         Fts: $("#MainContent_txtfts").val()
                     },
                     success: function (data) {
+                        $.fn.handleboxclose();
                         var obj = eval("(" + data + ")");
                         if (obj.data == "0")
                             alert("未读取到缓存");
