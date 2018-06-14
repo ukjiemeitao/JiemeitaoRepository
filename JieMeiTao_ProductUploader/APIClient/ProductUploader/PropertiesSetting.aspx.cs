@@ -14,7 +14,7 @@ using ProductUploader.Services;
 namespace ProductUploader
 {
     public partial class PropertiesSetting : BasePage
-    {
+    {                
         protected void Page_Load(object sender, EventArgs e)
         {
             

@@ -22,7 +22,7 @@ namespace ProductUploader
         {
             if (!IsPostBack)
             {
-
+                
                 string pid = Request.Params["Pid"];
                 string catid = Request.Params["CatId"];
                 string fts = Request.Params["Fts"];

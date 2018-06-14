@@ -56,10 +56,10 @@
                 text-decoration: none;
             }
     </style>
-    </style>
+   
     <link href="Content/css/modern.css" rel="stylesheet" />
     <link href="Content/css/modern-responsive.css" rel="stylesheet" />
-    <link rel="stylesheet/less" type="text/css" href="Content/css/dialog.less">
+    <link rel="stylesheet/less" type="text/css" href="Content/css/dialog.less"/>
     <script src="Content/js/jquery-1.9.0.min.js"></script>
     <script src="Content/js/dialog.js"></script>
     <style>

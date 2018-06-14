@@ -19,6 +19,7 @@ namespace ProductUploader
             }
             if (string.IsNullOrEmpty(LoginName))
             {
+                
                 Response.Redirect("Login.aspx");
             }
         }

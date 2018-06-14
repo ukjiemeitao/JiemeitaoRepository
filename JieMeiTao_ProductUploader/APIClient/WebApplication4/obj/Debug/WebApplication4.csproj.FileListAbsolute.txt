@@ -1,0 +1,5 @@
+D:\Development\GitHub\JiemeitaoRepository\JieMeiTao_ProductUploader\APIClient\WebApplication4\bin\WebApplication4.dll
+D:\Development\GitHub\JiemeitaoRepository\JieMeiTao_ProductUploader\APIClient\WebApplication4\bin\WebApplication4.pdb
+D:\Development\GitHub\JiemeitaoRepository\JieMeiTao_ProductUploader\APIClient\WebApplication4\obj\Debug\WebApplication4.csprojResolveAssemblyReference.cache
+D:\Development\GitHub\JiemeitaoRepository\JieMeiTao_ProductUploader\APIClient\WebApplication4\obj\Debug\WebApplication4.dll
+D:\Development\GitHub\JiemeitaoRepository\JieMeiTao_ProductUploader\APIClient\WebApplication4\obj\Debug\WebApplication4.pdb
